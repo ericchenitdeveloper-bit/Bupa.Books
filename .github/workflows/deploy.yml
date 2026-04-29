@@ -1,0 +1,78 @@
+﻿name: Deploy to Staging
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+
+jobs:
+  deploy:
+    name: Deploy to ${{ inputs.environment || 'staging' }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'staging' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Private API
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/bupa-books-private-api:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/bupa-books-private-api:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build and push Public API
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile.PublicApi
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/bupa-books-public-api:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/bupa-books-public-api:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Deploy to AWS ECS
+        run: |
+          # This would typically use AWS CLI or Terraform
+          # Example commands:
+          echo "Updating ECS service with new image tags..."
+          # aws ecs update-service --cluster bupa-books-cluster --service bupa-books-service --force-new-deployment
+
+      - name: Run smoke tests
+        run: |
+          # Wait for deployment and run basic health checks
+          echo "Running post-deployment smoke tests..."
+          # curl -f https://api-staging.bupa-books.com/health
+          # curl -f https://api-staging.bupa-books.com/api/v1/books -H "Authorization: Bearer test-token"
+
+      - name: Notify deployment success
+        if: success()
+        run: |
+          echo "Deployment to ${{ inputs.environment || 'staging' }} completed successfully!"
+          # Could integrate with Slack, Teams, or other notification services

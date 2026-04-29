@@ -106,6 +106,30 @@ Both APIs include Swagger UI for interactive documentation:
 
 Never commit sensitive credentials to version control or store them in application configuration files in production environments.
 
+## Deployment
+
+### Docker Images
+The application includes Docker support for both APIs:
+- **Private API**: Uses `Dockerfile` (default)
+- **Public API**: Uses `Dockerfile.PublicApi`
+
+### Running with Docker Compose
+```bash
+docker-compose up -d
+```
+This starts both APIs with proper networking and health checks.
+
+### CI/CD Pipeline
+The repository includes GitHub Actions workflows:
+- **CI Pipeline** (`.github/workflows/ci.yml`): Builds, tests, and creates Docker images
+- **Deployment Pipeline** (`.github/workflows/deploy.yml`): Deploys to staging/production environments
+
+The CI pipeline includes:
+- Automated testing with code coverage
+- Security vulnerability scanning with Trivy
+- Multi-stage Docker builds for both APIs
+- Parallel job execution for faster feedback
+
 # Assumptions
 - A book is treated as hardcover when its `Type` is `Hardcover` (case-insensitive).
 - Owners with null or empty book collections are treated as having no books and do not contribute any book entries to the output.
