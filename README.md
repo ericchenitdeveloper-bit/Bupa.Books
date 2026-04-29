@@ -35,3 +35,8 @@ Bupa.Books/
 ```
 
 # Assumptions
+- A book is treated as hardcover when its `Type` is `Hardcover` (case-insensitive).
+- Owners with null or empty book collections are treated as having no books and do not contribute any book entries to the output.
+- Only categories that contain at least one matching book are included in the response.
+- The upstream API response is treated as the source of truth for this exercise, and no local persistence is introduced.
+- If the upstream API call fails or times out, the application returns an error response rather than partial results.
