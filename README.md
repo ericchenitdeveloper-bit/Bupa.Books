@@ -106,6 +106,10 @@ Both APIs include Swagger UI for interactive documentation:
 
 Never commit sensitive credentials to version control or store them in application configuration files in production environments.
 
+## CI/CD & Docker
+
+> **Demonstration only** — the GitHub Actions workflows (`.github/workflows/`) and Dockerfiles (`Dockerfile.PrivateApi`, `Dockerfile.PublicApi`) are included to show how the application could be containerised and deployed. They are not wired to any real infrastructure and are not intended to be run as-is.
+
 # Assumptions
 - A book is treated as hardcover when its `Type` is `Hardcover` (case-insensitive).
 - Owners with null or empty book collections are treated as having no books and do not contribute any book entries to the output.
