@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
@@ -22,6 +22,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bupa.Books.Infrastructure", "src\Shared\Bupa.Books.Infrastructure\Bupa.Books.Infrastructure.csproj", "{55555555-5555-5555-5555-555555555555}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bupa.Books.Common", "src\Shared\Bupa.Books.Common\Bupa.Books.Common.csproj", "{66666666-6666-6666-6666-666666666666}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4B8D067B-F646-4350-9293-7641363AA1DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bupa.Books.Application.Tests", "tests\Bupa.Books.Application.Tests\Bupa.Books.Application.Tests.csproj", "{C75148F8-91B8-4FD1-9076-74FF6D323A11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bupa.Books.PrivateApi.Tests", "tests\Bupa.Books.PrivateApi.Tests\Bupa.Books.PrivateApi.Tests.csproj", "{3827339B-F338-4ACB-A04E-00C257B8211D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bupa.Books.PublicApi.Tests", "tests\Bupa.Books.PublicApi.Tests\Bupa.Books.PublicApi.Tests.csproj", "{5CD6BF53-906F-475D-A460-6D2368094B23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +61,18 @@ Global
 		{66666666-6666-6666-6666-666666666666}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66666666-6666-6666-6666-666666666666}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66666666-6666-6666-6666-666666666666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C75148F8-91B8-4FD1-9076-74FF6D323A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C75148F8-91B8-4FD1-9076-74FF6D323A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C75148F8-91B8-4FD1-9076-74FF6D323A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C75148F8-91B8-4FD1-9076-74FF6D323A11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3827339B-F338-4ACB-A04E-00C257B8211D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3827339B-F338-4ACB-A04E-00C257B8211D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3827339B-F338-4ACB-A04E-00C257B8211D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3827339B-F338-4ACB-A04E-00C257B8211D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CD6BF53-906F-475D-A460-6D2368094B23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CD6BF53-906F-475D-A460-6D2368094B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CD6BF53-906F-475D-A460-6D2368094B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CD6BF53-906F-475D-A460-6D2368094B23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B2E6C3F0-1234-5678-9ABC-DEF012345679} = {A1E6C3F0-1234-5678-9ABC-DEF012345678}
@@ -64,6 +84,8 @@ Global
 		{44444444-4444-4444-4444-444444444444} = {D4E6C3F0-1234-5678-9ABC-DEF01234567B}
 		{55555555-5555-5555-5555-555555555555} = {D4E6C3F0-1234-5678-9ABC-DEF01234567B}
 		{66666666-6666-6666-6666-666666666666} = {D4E6C3F0-1234-5678-9ABC-DEF01234567B}
+		{C75148F8-91B8-4FD1-9076-74FF6D323A11} = {4B8D067B-F646-4350-9293-7641363AA1DF}
+		{3827339B-F338-4ACB-A04E-00C257B8211D} = {4B8D067B-F646-4350-9293-7641363AA1DF}
+		{5CD6BF53-906F-475D-A460-6D2368094B23} = {4B8D067B-F646-4350-9293-7641363AA1DF}
 	EndGlobalSection
 EndGlobal
-

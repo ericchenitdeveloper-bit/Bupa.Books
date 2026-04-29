@@ -1,0 +1,35 @@
+services:
+  private-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - BooksApi__BaseUrl=https://digitalcodingtest.bupa.com.au/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  public-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.PublicApi
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - PrivateApi__BaseUrl=http://private-api:8080/
+      - PrivateApi__ApiKey=bupa-internal-prod-api-key-replace-in-real-deployment
+      - Jwt__SecretKey=bupa-books-prod-secret-replace-in-real-deployment!
+      - Jwt__Issuer=bupa-books-public-api
+      - Jwt__Audience=bupa-books-clients
+      - MockAuth__Username=demo
+      - MockAuth__Password=demo123
+    depends_on:
+      private-api:
+        condition: service_healthy
+    restart: unless-stopped
